@@ -19,12 +19,12 @@
 ### Description of Arguments:
 
  ```bash
-  --fold_v: Number of fold
+  --fold_v: Number of fold (Eg. If using 5 fold cv, then pass each fold index to train a single model).
   --daata: Pass the data in the shape of:  (Subjects, components, time points). For pretraining, pass HCP. For downstream, pass any one of these datasets (FBIRN, ADNI, B-SNIP, ABIDE, OASIS)
   --encoder: Model used for training (LSTM: Modified wholeMILC)
   --ws: Window shift (Should be equal to window size (20)
   --wsize: window size (20)
-  --convsize: Ignore it
+  --convsize: Pass seed value
   --epp: Number of epochs
   --tp: total time points
   --samples: Number of subjects
