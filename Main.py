@@ -506,8 +506,6 @@ def mapping_component_latent(dataloader):
         for window in range(num_windows):
             # Main LSTM weights scaled by global attention
             lstm_weights = W_ih_main * global_lstm_attn[window]
-            print('a', W_ih_main.shape,global_lstm_attn[window].shape, lstm_weights.shape)
-            exit()
             for t in range(window_size):
                 # Encoder weights scaled by window-level attention
                 enc_weights = W_ih_enc * global_enc_attn[window * window_size + t]
