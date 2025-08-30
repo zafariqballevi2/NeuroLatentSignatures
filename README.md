@@ -1,28 +1,32 @@
-# Explainable_ML_TimeReversal
+# NeuroLantentSignatures
 
 ### Pretraining: 
    ```bash
-    python -m Main_pretraining --fold_v 0 --daata chirp1 --encoder rnm --seeds 1 --ws 1200 --nw 1 --wsize 1200 --convsize 238400 --epp 2 --tp 1200 --samples 830 --l_ptr F --attr_alg IG
+     python -m Main --fold_v 0 --daata HCP --encoder LSTM --seeds 1 --ws 20 --nw 60 --wsize 20 --convsize 1 --epp 1000 --tp 1200 --samples 311 --l_ptr T
 ```
 
 
 ### Downstream training:
   ```bash
-  python -m Main_downstreamtraining --fold_v 0 --daata chirp1 --encoder rnm --seeds 1 --ws 140 --nw 1 --wsize 140 --convsize 2400 --epp 2 --tp 140 --samples 311 --l_ptr T --attr_alg IG
+  python -m Main --fold_v 0 --daata FBIRN --encoder LSTM --seeds 1 --ws 20 --nw 7 --wsize 20 --convsize 1 --epp 1000 --tp 140 --samples 311 --l_ptr T
+  ```
+
+### T-test and Probe analysis:
+  ```bash
+  python -m ttest_probing
   ```
 
 ### Description of Arguments:
 
  ```bash
   --fold_v: Number of fold
-  --daata: Pass the data in the shape of:  (Subjects, components, time points)
-  --encoder: Model used for training (rnm: The proposed model, cnn: wholeMILC)
-  --ws: Window shift (Should be equal to time points
-  --wsize: window size ( Should be equal to time points
-  --convsize: Convolution size (Based on the input dimensions)
+  --daata: Pass the data in the shape of:  (Subjects, components, time points). For pretraining, pass HCP. For downstream, pass any one of these datasets (FBIRN, ADNI, B-SNIP, ABIDE, OASIS)
+  --encoder: Model used for training (LSTM: Modified wholeMILC)
+  --ws: Window shift (Should be equal to window size (20)
+  --wsize: window size (20)
+  --convsize: Ignore it
   --epp: Number of epochs
-  --tp: time points
+  --tp: total time points
   --samples: Number of subjects
   --l_ptr: T (with pretraining), F (w/o pretraining)
-  --attr_alg: Attribution Algorithm (IG : Integrated Gradients, GS : Gradient SHAP)
 ```
